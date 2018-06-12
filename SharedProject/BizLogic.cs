@@ -31,7 +31,7 @@ namespace RealmMvvm
             {
                 using (var realm = Realm.GetInstance())
                 {
-                    var settings = realm.All<Settings>().First();
+                    var settings = realm.All<Settings>().FirstOrDefault();
                     if (settings == null)
                     {
                         realm.Write(() => { settings = new Settings { CurrentPage = nameof(StartViewModel) }; });
@@ -60,7 +60,7 @@ namespace RealmMvvm
             {
                 using (var realm = Realm.GetInstance())
                 {
-                    var entrySheet = realm.All<EntrySheet>().First();
+                    var entrySheet = realm.All<EntrySheet>().FirstOrDefault();
                     if (entrySheet == null)
                     {
                         // 保存情報が存在しない
