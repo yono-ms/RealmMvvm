@@ -2,13 +2,18 @@
     x:Class="RealmMvvmUwp.StartPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RealmMvvmUwp"
+    xmlns:local="using:RealmMvvm"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:StartViewModel, IsDesignTimeCreatable=True}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <StackPanel>
+            <TextBlock Text="{Binding Path=PageTitle}"/>
+            <TextBlock Text="{Binding Path=PageDescription}"/>
+            <Button x:Name="ButtonCommit" Content="{Binding Path=ButtonLabelCommit}" Click="ButtonCommit_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealmMvvm;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,19 @@ namespace RealmMvvmUwp
     /// </summary>
     public sealed partial class StartPage : Page
     {
+        private StartViewModel viewModel;
+
         public StartPage()
         {
             this.InitializeComponent();
+
+            viewModel = (Application.Current as App).BizLogic.GetViewModel<StartViewModel>();
+            DataContext = viewModel;
+        }
+
+        private void ButtonCommit_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.OnClickCommitInvoke(sender, null);
         }
     }
 }

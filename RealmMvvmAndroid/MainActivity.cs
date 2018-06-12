@@ -11,6 +11,11 @@ namespace RealmMvvmAndroid
     {
         private BizLogic bizLogic;
 
+        public void NavigateTo(string viewName)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void ShowAlert(string message)
         {
             throw new System.NotImplementedException();

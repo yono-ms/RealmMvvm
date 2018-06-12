@@ -17,6 +17,10 @@ namespace RealmMvvm
         /// </summary>
         public string PageTitle { get; set; }
         /// <summary>
+        /// ページ説明文.
+        /// </summary>
+        public string PageDescription { get; set; }
+        /// <summary>
         /// コミットボタンラベル.
         /// </summary>
         public string ButtonLabelCommit { get; set; }
@@ -46,7 +50,7 @@ namespace RealmMvvm
             PropertyChanged?.Invoke(sender, e);
         }
         /// <summary>
-        /// プロパティバリデーションを実行する
+        /// プロパティバリデーションを実行する.
         /// </summary>
         /// <param name="propertyName">プロパティ名</param>
         /// <param name="value">値</param>
@@ -67,6 +71,33 @@ namespace RealmMvvm
                 // エラーなし
                 return null;
             }
+        }
+
+        /// <summary>
+        /// コミットボタン押下イベント.
+        /// </summary>
+        public event EventHandler OnClickCommit;
+        /// <summary>
+        /// 派生クラスからボタン押下イベントをキックする.
+        /// </summary>
+        /// <param name="sender">送信者</param>
+        /// <param name="e">イベント引数</param>
+        public void OnClickCommitInvoke(object sender, EventArgs e)
+        {
+            OnClickCommit?.Invoke(sender, e);
+        }
+        /// <summary>
+        /// バックボタン押下イベント.
+        /// </summary>
+        public event EventHandler OnClickBack;
+        /// <summary>
+        /// 派生クラスからボタン押下イベントをキックする.
+        /// </summary>
+        /// <param name="sender">送信者</param>
+        /// <param name="e">イベント引数</param>
+        public void OnClickBackInvoke(object sender, EventArgs e)
+        {
+            OnClickBack?.Invoke(sender, e);
         }
     }
 }

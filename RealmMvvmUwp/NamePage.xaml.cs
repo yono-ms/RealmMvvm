@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealmMvvm;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace RealmMvvmUwp
         public NamePage()
         {
             this.InitializeComponent();
+
+            DataContext = (Application.Current as App).BizLogic.GetViewModel<NameViewModel>();
         }
     }
 }

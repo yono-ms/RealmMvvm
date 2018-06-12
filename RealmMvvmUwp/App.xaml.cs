@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealmMvvm;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace RealmMvvmUwp
     /// </summary>
     sealed partial class App : Application
     {
+        /// <summary>
+        /// ビジネスロジック.
+        /// </summary>
+        public BizLogic BizLogic { get; set; }
+
         /// <summary>
         /// 単一アプリケーション オブジェクトを初期化します。これは、実行される作成したコードの
         ///最初の行であるため、main() または WinMain() と論理的に等価です。

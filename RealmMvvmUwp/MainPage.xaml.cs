@@ -48,10 +48,13 @@ namespace RealmMvvmUwp
 
             bizLogic = new BizLogic(this);
 
+            var app = Application.Current as App;
+            app.BizLogic = bizLogic;
+
             ContentFrame = new Frame();
             GridContent.Children.Add(ContentFrame);
-            var view = bizLogic.GetCurrentView();
-            ContentFrame.Navigate(stringToPage[view]);
+            var viewName = bizLogic.GetCurrentView();
+            ContentFrame.Navigate(stringToPage[viewName]);
         }
 
         public void ShowAlert(string message)
@@ -71,6 +74,11 @@ namespace RealmMvvmUwp
                     await dialog.ShowAsync();
                 });
             });
+        }
+
+        public void NavigateTo(string viewName)
+        {
+            ContentFrame.Navigate(stringToPage[viewName]);
         }
     }
 }

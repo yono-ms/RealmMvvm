@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RealmMvvm
 {
@@ -12,7 +13,36 @@ namespace RealmMvvm
         /// <summary>
         /// OS依存機能
         /// </summary>
-        INativeCall nativeCall;
+        private INativeCall nativeCall;
+        /// <summary>
+        /// 連打防止
+        /// </summary>
+        private bool busy;
+        /// <summary>
+        /// 連打防止
+        /// </summary>
+        public bool IsBusy
+        {
+            get
+            {
+                if (!busy)
+                {
+                    busy = true;
+                    Task.Run(async () =>
+                    {
+                        await Task.Delay(1000);
+                        busy = false;
+                    });
+                    return false;
+                }
+                else
+                {
+                    return busy;
+                }
+            }
+            set { busy = value; }
+        }
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -76,29 +106,35 @@ namespace RealmMvvm
                             realm.Add(entrySheet);
                         });
                     }
-                    if (typeof(T) == typeof(NameViewModel))
+                    if (typeof(T) == typeof(StartViewModel))
                     {
-                        var viewModel = new NameViewModel();
-                        viewModel.Name = entrySheet.Name;
-                        viewModel.NameKana = entrySheet.NameKana;
-                        return viewModel as T;
+                        var startViewModel = new StartViewModel();
+                        startViewModel.OnClickCommit += StartViewModel_OnClickCommit;
+                        return startViewModel as T;
+                    }
+                    else if (typeof(T) == typeof(NameViewModel))
+                    {
+                        var nameViewModel = new NameViewModel();
+                        nameViewModel.Name = entrySheet.Name;
+                        nameViewModel.NameKana = entrySheet.NameKana;
+                        return nameViewModel as T;
                     }
                     else if (typeof(T) == typeof(AgeViewModel))
                     {
-                        var viewModel = new AgeViewModel();
-                        viewModel.Age = entrySheet.Age;
-                        return viewModel as T;
+                        var ageViewModel = new AgeViewModel();
+                        ageViewModel.Age = entrySheet.Age;
+                        return ageViewModel as T;
                     }
                     else if (typeof(T) == typeof(AddressViewModel))
                     {
-                        var viewModel = new AddressViewModel();
-                        viewModel.Address = entrySheet.Address;
-                        return viewModel as T;
+                        var addressViewModel = new AddressViewModel();
+                        addressViewModel.Address = entrySheet.Address;
+                        return addressViewModel as T;
                     }
                     else if (typeof(T) == typeof(ConfirmViewModel))
                     {
-                        var viewModel = new ConfirmViewModel();
-                        return viewModel as T;
+                        var confirmViewModel = new ConfirmViewModel();
+                        return confirmViewModel as T;
                     }
                 }
             }
@@ -109,6 +145,17 @@ namespace RealmMvvm
             }
 
             return new T();
+        }
+
+        private void StartViewModel_OnClickCommit(object sender, EventArgs e)
+        {
+            if (IsBusy)
+            {
+                Debug.WriteLine("busy.");
+                return;
+            }
+
+            nativeCall.NavigateTo(nameof(NameViewModel));
         }
     }
 }
