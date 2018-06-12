@@ -58,7 +58,7 @@ namespace RealmMvvmUwp
         {
             Task.Run(async () =>
             {
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
                 {
                     // アラート表示
                     var dialog = new ContentDialog
@@ -68,6 +68,7 @@ namespace RealmMvvmUwp
                         IsPrimaryButtonEnabled = true,
                         PrimaryButtonText = "OK"
                     };
+                    await dialog.ShowAsync();
                 });
             });
         }
