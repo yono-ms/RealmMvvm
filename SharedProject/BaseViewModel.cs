@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 
 namespace RealmMvvm
@@ -42,6 +44,29 @@ namespace RealmMvvm
         protected void PropertyChangedInvoke(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(sender, e);
+        }
+        /// <summary>
+        /// プロパティバリデーションを実行する
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
+        /// <param name="value">値</param>
+        /// <returns>エラーメッセージ</returns>
+        protected String ValidateProperty(string propertyName, object value)
+        {
+            var context = new ValidationContext(this) { MemberName = propertyName };
+            var validationErrors = new List<ValidationResult>();
+            if (!Validator.TryValidateProperty(value, context, validationErrors))
+            {
+                // エラーあり
+                var errors = validationErrors.Select(e => e.ErrorMessage);
+                var result = string.Join("\n", errors);
+                return result;
+            }
+            else
+            {
+                // エラーなし
+                return null;
+            }
         }
     }
 }

@@ -97,12 +97,17 @@
     <PackageReference Include="Realm">
       <Version>3.0.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
-  <Import Project="..\SharedProject\SharedProject.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
+      <Project>{aedcbeb2-63ee-417b-aee3-30bf0a6273db}</Project>
+      <Name>ClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 		Other similar extension points exist, see Microsoft.Common.targets.

@@ -9,10 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealmMvvmAndroid", "RealmMv
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedProject", "SharedProject\SharedProject.shproj", "{0A08CE20-D5EF-44E6-BDFE-35204F3D8B68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProject\SharedProject.projitems*{0a08ce20-d5ef-44e6-bdfe-35204f3d8b68}*SharedItemsImports = 13
-		SharedProject\SharedProject.projitems*{11a53529-7ab2-4f0f-911e-4dff9638dc16}*SharedItemsImports = 4
 		SharedProject\SharedProject.projitems*{f58c9e74-a234-4312-8068-97bcd44419d1}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +73,22 @@ Global
 		{11A53529-7AB2-4F0F-911E-4DFF9638DC16}.Release|x86.ActiveCfg = Release|Any CPU
 		{11A53529-7AB2-4F0F-911E-4DFF9638DC16}.Release|x86.Build.0 = Release|Any CPU
 		{11A53529-7AB2-4F0F-911E-4DFF9638DC16}.Release|x86.Deploy.0 = Release|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Debug|ARM.Build.0 = Debug|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Debug|x64.Build.0 = Debug|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Debug|x86.Build.0 = Debug|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Release|ARM.Build.0 = Release|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Release|x64.ActiveCfg = Release|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Release|x64.Build.0 = Release|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Release|x86.ActiveCfg = Release|Any CPU
+		{AEDCBEB2-63EE-417B-AEE3-30BF0A6273DB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
