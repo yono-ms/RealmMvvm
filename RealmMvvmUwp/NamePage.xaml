@@ -11,9 +11,14 @@
 
     <Grid>
         <StackPanel>
+            <Button Content="{Binding Path=ButtonLabelBack}"/>
             <TextBlock Text="{Binding Path=PageTitle}"/>
             <TextBlock Text="{Binding Path=PageDescription}"/>
-            <Button Content="{Binding Path=ButtonLabelCommit}"/>
+            <TextBox Header="{Binding Path=TitleName}" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="{Binding Path=ErrorName}"/>
+            <TextBox Header="{Binding Path=TitleNameKana}" Text="{Binding Path=NameKana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="{Binding Path=ErrorNameKana}"/>
+            <Button Content="{Binding Path=ButtonLabelCommit}" IsEnabled="{Binding Path=CanCommit}"/>
         </StackPanel>
     </Grid>
 </Page>
