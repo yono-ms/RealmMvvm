@@ -17,7 +17,7 @@ namespace RealmMvvmAndroid
         public Dictionary<string, Type> stringToPage = new Dictionary<string, Type>
         {
             { nameof(StartViewModel), typeof(StartFragment) },
-            //{ nameof(NameViewModel), typeof(NamePage) },
+            { nameof(NameViewModel), typeof(NameFragment) },
             //{ nameof(AgeViewModel), typeof(AgePage) },
             //{ nameof(AddressViewModel), typeof(AddressPage) },
             //{ nameof(ConfirmViewModel), typeof(ConfirmPage) },
@@ -58,8 +58,12 @@ namespace RealmMvvmAndroid
             SetContentView(Resource.Layout.activity_main);
 
             bizLogic = new BizLogic(this);
-            var currentView = bizLogic.GetCurrentView();
-            System.Diagnostics.Debug.WriteLine(currentView);
+            if (savedInstanceState == null)
+            {
+                var currentView = bizLogic.GetCurrentView();
+                System.Diagnostics.Debug.WriteLine(currentView);
+                NavigateTo(currentView);
+            }
         }
 
     }

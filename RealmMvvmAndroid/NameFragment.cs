@@ -14,9 +14,9 @@ using RealmMvvm;
 
 namespace RealmMvvmAndroid
 {
-    public class StartFragment : Fragment
+    public class NameFragment : Fragment
     {
-        private StartViewModel ViewModel;
+        private NameViewModel ViewModel;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -28,14 +28,14 @@ namespace RealmMvvmAndroid
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            return inflater.Inflate(Resource.Layout.fragment_start, container, false);
+            return inflater.Inflate(Resource.Layout.fragment_name, container, false);
         }
 
         public override void OnResume()
         {
             base.OnResume();
 
-            ViewModel = (Activity as MainActivity).BizLogic.GetViewModel<StartViewModel>();
+            ViewModel = (Activity as MainActivity).BizLogic.GetViewModel<NameViewModel>();
 
             // VMイベント
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
