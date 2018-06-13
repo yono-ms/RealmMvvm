@@ -64,7 +64,11 @@ namespace RealmMvvm
                     var settings = realm.All<Settings>().FirstOrDefault();
                     if (settings == null)
                     {
-                        realm.Write(() => { settings = new Settings { CurrentPage = nameof(StartViewModel) }; });
+                        realm.Write(() =>
+                        {
+                            settings = new Settings { CurrentPage = nameof(StartViewModel) };
+                            realm.Add(settings);
+                        });
                     }
 
                     return settings.CurrentPage;
