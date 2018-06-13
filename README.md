@@ -13,6 +13,9 @@ VisualStudio2017
 4. SharedProjectに移行
 5. XamarinでAnnotationを使用不可
 6. .NetStandardを再追加して既存参照
+7. Realmを.NetStandardとXamarin両方に入れる
+8. FodyWeavers.xmlは両方に必要
+9. SolutionDir警告は一回再起動すると消える
 
 ## Tips
 
