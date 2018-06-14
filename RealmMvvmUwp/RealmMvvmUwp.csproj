@@ -93,6 +93,39 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\ClassLibrary\BizLogic\BizLogic.cs">
+      <Link>BizLogic\BizLogic.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\BizLogic\EntrySheet.cs">
+      <Link>BizLogic\EntrySheet.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\BizLogic\INativeCall.cs">
+      <Link>BizLogic\INativeCall.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\BizLogic\Settings.cs">
+      <Link>BizLogic\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\ViewModels\AddressViewModel.cs">
+      <Link>ViewModels\AddressViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\ViewModels\AgeViewModel.cs">
+      <Link>ViewModels\AgeViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\ViewModels\BaseViewModel.cs">
+      <Link>ViewModels\BaseViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\ViewModels\ConfirmViewModel.cs">
+      <Link>ViewModels\ConfirmViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\ViewModels\FinishViewModel.cs">
+      <Link>ViewModels\FinishViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\ViewModels\NameViewModel.cs">
+      <Link>ViewModels\NameViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ClassLibrary\ViewModels\StartViewModel.cs">
+      <Link>ViewModels\StartViewModel.cs</Link>
+    </Compile>
     <Compile Include="AddressPage.xaml.cs">
       <DependentUpon>AddressPage.xaml</DependentUpon>
     </Compile>
@@ -102,10 +135,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BizLogic\BizLogic.cs" />
-    <Compile Include="BizLogic\EntrySheet.cs" />
-    <Compile Include="BizLogic\INativeCall.cs" />
-    <Compile Include="BizLogic\Settings.cs" />
     <Compile Include="ConfirmPage.xaml.cs">
       <DependentUpon>ConfirmPage.xaml</DependentUpon>
     </Compile>
@@ -122,13 +151,6 @@
     <Compile Include="StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AddressViewModel.cs" />
-    <Compile Include="ViewModels\AgeViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\ConfirmViewModel.cs" />
-    <Compile Include="ViewModels\FinishViewModel.cs" />
-    <Compile Include="ViewModels\NameViewModel.cs" />
-    <Compile Include="ViewModels\StartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
