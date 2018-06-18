@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealmMvvm;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,14 @@ namespace RealmMvvmUwp
     /// </summary>
     public sealed partial class FinishPage : Page
     {
+        FinishViewModel viewModel;
+
         public FinishPage()
         {
             this.InitializeComponent();
+
+            viewModel = (Application.Current as App).BizLogic.GetViewModel<FinishViewModel>();
+            DataContext = viewModel;
         }
     }
 }

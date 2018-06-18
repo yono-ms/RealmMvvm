@@ -2,13 +2,35 @@
     x:Class="RealmMvvmUwp.ConfirmPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RealmMvvmUwp"
+    xmlns:local="using:RealmMvvm"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:ConfirmViewModel, IsDesignTimeCreatable=True}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <StackPanel>
+            <TextBlock Text="{Binding Path=PageTitle}"/>
+            <TextBlock Text="{Binding Path=PageDescription}"/>
+            <ItemsControl ItemsSource="{Binding Path=ConfirmItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Path=Name}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Path=Value}"/>
+                            <Button x:Name="ButtonEdit" Grid.Column="2" Content="編集する" Tag="{Binding}" Click="ButtonEdit_Click"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button x:Name="ButtonCommit" Content="{Binding Path=ButtonLabelCommit}" IsEnabled="{Binding Path=CanCommit}" Click="ButtonCommit_Click"/>
+        </StackPanel>
 
     </Grid>
 </Page>

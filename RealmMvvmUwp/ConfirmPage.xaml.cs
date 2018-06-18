@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealmMvvm;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,26 @@ namespace RealmMvvmUwp
     /// </summary>
     public sealed partial class ConfirmPage : Page
     {
+        ConfirmViewModel viewModel;
+
         public ConfirmPage()
         {
             this.InitializeComponent();
+
+            viewModel = (Application.Current as App).BizLogic.GetViewModel<ConfirmViewModel>();
+            DataContext = viewModel;
+        }
+
+        private void ButtonCommit_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.OnClickCommitInvoke(viewModel, new EventArgs());
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var item = button.Tag as ConfirmViewModel.ConfirmItem;
+            viewModel.OnClickEditInvoke(viewModel, new ConfirmViewModel.EditEventArgs { ItemType = item.ItemType });
         }
     }
 }

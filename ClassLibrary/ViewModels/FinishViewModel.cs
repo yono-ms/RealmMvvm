@@ -9,5 +9,10 @@ namespace RealmMvvm
     /// </summary>
     public class FinishViewModel : BaseViewModel
     {
+        public FinishViewModel()
+        {
+            PageTitle = "お申し込み完了";
+            PageDescription = "ありがとうございました。";
+        }
     }
 }
