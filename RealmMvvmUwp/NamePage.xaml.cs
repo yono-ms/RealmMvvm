@@ -23,11 +23,24 @@ namespace RealmMvvmUwp
     /// </summary>
     public sealed partial class NamePage : Page
     {
+        NameViewModel viewModel;
+
         public NamePage()
         {
             this.InitializeComponent();
 
-            DataContext = (Application.Current as App).BizLogic.GetViewModel<NameViewModel>();
+            viewModel = (Application.Current as App).BizLogic.GetViewModel<NameViewModel>();
+            DataContext = viewModel;
+        }
+
+        private void ButtonCommit_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.OnClickCommitInvoke(viewModel, new EventArgs());
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.OnClickBackInvoke(viewModel, new EventArgs());
         }
     }
 }

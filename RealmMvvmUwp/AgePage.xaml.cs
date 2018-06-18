@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealmMvvm;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,24 @@ namespace RealmMvvmUwp
     /// </summary>
     public sealed partial class AgePage : Page
     {
+        AgeViewModel viewModel;
+
         public AgePage()
         {
             this.InitializeComponent();
+
+            viewModel = (Application.Current as App).BizLogic.GetViewModel<AgeViewModel>();
+            DataContext = viewModel;
+        }
+
+        private void ButtonCommit_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.OnClickCommitInvoke(viewModel, new EventArgs());
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.OnClickBackInvoke(viewModel, new EventArgs());
         }
     }
 }

@@ -121,12 +121,16 @@ namespace RealmMvvm
                         var nameViewModel = new NameViewModel();
                         nameViewModel.Name = entrySheet.Name;
                         nameViewModel.NameKana = entrySheet.NameKana;
+                        nameViewModel.OnClickCommit += NameViewModel_OnClickCommit;
+                        nameViewModel.OnClickBack += NameViewModel_OnClickBack;
                         return nameViewModel as T;
                     }
                     else if (typeof(T) == typeof(AgeViewModel))
                     {
                         var ageViewModel = new AgeViewModel();
                         ageViewModel.Age = entrySheet.Age;
+                        ageViewModel.OnClickCommit += AgeViewModel_OnClickCommit;
+                        ageViewModel.OnClickBack += AgeViewModel_OnClickBack;
                         return ageViewModel as T;
                     }
                     else if (typeof(T) == typeof(AddressViewModel))
@@ -149,6 +153,128 @@ namespace RealmMvvm
             }
 
             return new T();
+        }
+
+        private void AgeViewModel_OnClickBack(object sender, EventArgs e)
+        {
+            if (IsBusy)
+            {
+                Debug.WriteLine("busy.");
+                return;
+            }
+
+            nativeCall.NavigateTo(nameof(NameViewModel));
+        }
+
+        private void AgeViewModel_OnClickCommit(object sender, EventArgs e)
+        {
+            if (IsBusy)
+            {
+                Debug.WriteLine("busy.");
+                return;
+            }
+
+            var ageViewModel = sender as AgeViewModel;
+
+            // 画面間のバリデーションチェックがあればここで
+
+            // 保存する
+            try
+            {
+                using (var realm = Realm.GetInstance())
+                {
+                    realm.Write(() =>
+                    {
+                        // エントリーシート
+                        var entrySheet = realm.All<EntrySheet>().FirstOrDefault();
+                        if (entrySheet == null)
+                        {
+                            nativeCall.ShowAlert("No entry sheet.");
+                            return;
+                        }
+                        entrySheet.Age = ageViewModel.Age;
+
+                        // 次画面
+                        var settings = realm.All<Settings>().FirstOrDefault();
+                        if (settings == null)
+                        {
+                            nativeCall.ShowAlert("No settings.");
+                            return;
+                        }
+                        settings.CurrentPage = nameof(AddressViewModel);
+                    });
+
+                }
+
+                nativeCall.NavigateTo(nameof(AddressViewModel));
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                nativeCall.ShowAlert(ex.Message);
+            }
+        }
+
+        private void NameViewModel_OnClickBack(object sender, EventArgs e)
+        {
+            if (IsBusy)
+            {
+                Debug.WriteLine("busy.");
+                return;
+            }
+
+            nativeCall.NavigateTo(nameof(StartViewModel));
+        }
+
+        private void NameViewModel_OnClickCommit(object sender, EventArgs e)
+        {
+            if (IsBusy)
+            {
+                Debug.WriteLine("busy.");
+                return;
+            }
+
+            var nameViewModel = sender as NameViewModel;
+
+            // 画面間のバリデーションチェックがあればここで
+
+            // 保存する
+            try
+            {
+                using (var realm = Realm.GetInstance())
+                {
+                    realm.Write(() =>
+                    {
+                        // エントリーシート
+                        var entrySheet = realm.All<EntrySheet>().FirstOrDefault();
+                        if (entrySheet == null)
+                        {
+                            nativeCall.ShowAlert("No entry sheet.");
+                            return;
+                        }
+                        entrySheet.Name = nameViewModel.Name;
+                        entrySheet.NameKana = nameViewModel.NameKana;
+
+                        // 次画面
+                        var settings = realm.All<Settings>().FirstOrDefault();
+                        if (settings == null)
+                        {
+                            nativeCall.ShowAlert("No settings.");
+                            return;
+                        }
+                        settings.CurrentPage = nameof(AgeViewModel);
+                    });
+
+                }
+
+                nativeCall.NavigateTo(nameof(AgeViewModel));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                nativeCall.ShowAlert(ex.Message);
+            }
         }
 
         private void StartViewModel_OnClickCommit(object sender, EventArgs e)
